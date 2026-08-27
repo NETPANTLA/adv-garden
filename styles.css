@@ -61,6 +61,7 @@ h1 em { color:var(--violet); font-style:normal; }
 .connections { list-style:none; padding:0; margin:0; }
 .connections button { width:100%; display:flex; justify-content:space-between; border:0; border-bottom:1px solid #302e36; background:none; padding:7px 0; color:#c9c5cb; cursor:pointer; font-size:11px; text-align:left; }
 .connections button:hover { color:var(--magenta); }
+.relation-label{display:block;margin-top:2px;color:#716c78;font:8px "DM Mono";text-transform:uppercase;letter-spacing:.08em}
 .source-link { display:block; color:#bfbac5; font-size:12px; line-height:1.45; margin-bottom:10px; text-decoration:none; }
 .source-link::before { content:"↗ "; color:var(--node-color); }.source-link:hover{color:white}
 .modal { position:fixed; inset:0; z-index:30; display:grid; place-items:center; background:rgba(10,9,13,.7); backdrop-filter:blur(8px); padding:20px; }
