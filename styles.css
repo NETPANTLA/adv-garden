@@ -1,0 +1,69 @@
+:root { --bg:#19181f; --panel:#201f27; --ink:#f1efed; --muted:#96929f; --line:#35323d; --violet:#825cff; --orange:#ff641c; --magenta:#ff2e93; --cyan:#72e4d1; }
+* { box-sizing:border-box; }
+html,body { width:100%; height:100%; margin:0; overflow:hidden; background:var(--bg); color:var(--ink); font-family:"Space Grotesk",sans-serif; }
+button,input { font:inherit; }
+button { color:inherit; }
+.noise { position:fixed; inset:0; opacity:.035; pointer-events:none; z-index:20; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); }
+.topbar { position:fixed; inset:0 0 auto 0; height:62px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:0 24px; z-index:10; background:rgba(25,24,31,.88); backdrop-filter:blur(12px); }
+.brand { display:flex; gap:12px; align-items:center; color:var(--ink); text-decoration:none; font:500 12px "DM Mono"; letter-spacing:.12em; }
+.brand-mark { width:13px; height:13px; border:2px solid var(--orange); box-shadow:5px 5px 0 -2px var(--violet); transform:rotate(45deg); }
+.top-actions { display:flex; align-items:center; gap:12px; }
+.text-button,.icon-button,.close-button,.mobile-info { border:0; background:none; cursor:pointer; }
+.text-button { color:var(--muted); font:11px "DM Mono"; text-transform:uppercase; letter-spacing:.1em; }
+.text-button:hover { color:var(--orange); }
+.icon-button { width:30px; height:30px; border:1px solid var(--line); border-radius:50%; font:13px "DM Mono"; }
+main { position:absolute; inset:62px 0 0; display:grid; grid-template-columns:310px 1fr; transition:grid-template-columns .28s ease; }
+main.sidebar-collapsed{grid-template-columns:0 1fr}
+.sidebar { position:relative; border-right:1px solid var(--line); padding:34px 25px 24px; z-index:5; background:rgba(25,24,31,.96); overflow:auto; transition:transform .28s ease,opacity .2s; }
+main.sidebar-collapsed .sidebar{transform:translateX(-100%);opacity:0;pointer-events:none}
+.sidebar-close{position:absolute;right:12px;top:12px;border:1px solid #403c47;background:#222129;color:#8e8995;width:25px;height:25px;border-radius:50%;cursor:pointer;font:16px/1 "DM Mono"}.sidebar-close:hover{color:var(--magenta);border-color:var(--magenta)}
+.sidebar{scrollbar-width:thin;scrollbar-color:#55515d transparent}.sidebar::-webkit-scrollbar{width:5px}.sidebar::-webkit-scrollbar-track{background:transparent}.sidebar::-webkit-scrollbar-thumb{background:#55515d;border-radius:8px}
+.eyebrow { color:var(--orange); font:10px "DM Mono"; letter-spacing:.18em; margin-bottom:15px; }
+h1 { font-size:33px; line-height:1.02; letter-spacing:-.045em; margin:0 0 16px; font-weight:500; }
+h1 em { color:var(--violet); font-style:normal; }
+.lede { color:var(--muted); font-size:13px; line-height:1.55; max-width:250px; }
+.search-wrap { display:block; position:relative; margin:28px 0 24px; }
+.search-wrap>span { display:block; color:var(--muted); font:9px "DM Mono"; letter-spacing:.16em; margin-bottom:8px; }
+.search-wrap input { width:100%; background:transparent; border:0; border-bottom:1px solid #4a4653; padding:8px 25px 9px 0; color:var(--ink); outline:none; font-size:13px; }
+.search-wrap input:focus { border-color:var(--magenta); }
+.search-wrap kbd { position:absolute; right:0; bottom:10px; color:#6f6a78; font:11px "DM Mono"; }
+.filters { display:grid; gap:4px; }
+.filter { width:100%; display:grid; grid-template-columns:27px 1fr auto; align-items:center; gap:6px; text-align:left; border:0; border-left:2px solid transparent; background:transparent; padding:8px 6px; cursor:pointer; color:#aaa6b0; }
+.filter:hover,.filter.active { color:var(--ink); background:#23222a; border-color:var(--family); }
+.filter .num { color:var(--family); font:10px "DM Mono"; }
+.filter .name { font-size:12px; }
+.filter .count { font:9px "DM Mono"; color:#6f6a78; }
+.depth-control{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.depth-head,.depth-labels{display:flex;justify-content:space-between;color:#77727f;font:9px "DM Mono";letter-spacing:.12em}.depth-head output{color:var(--magenta)}
+.depth-control input{width:100%;margin:13px 0 8px;accent-color:var(--magenta)}
+.depth-labels{letter-spacing:0;text-transform:lowercase;color:#5e5965}
+.legend { display:flex; flex-wrap:wrap; gap:8px 12px; margin-top:24px; font:9px "DM Mono"; color:#8c8794; text-transform:uppercase; }
+.dot { display:inline-block; width:6px; height:6px; margin-right:5px; background:currentColor; }.violet{color:var(--violet)}.orange{color:var(--orange)}.magenta{color:var(--magenta)}
+.hint { margin-top:18px; color:#6b6672; font:9px/1.5 "DM Mono"; }
+.graph-shell { position:relative; min-width:0; overflow:hidden; cursor:grab; background:radial-gradient(circle at 50% 45%,#22202a 0,#19181f 58%); }
+.graph-shell:active { cursor:grabbing; }
+#graph { display:block; width:100%; height:100%; }
+.graph-meta { position:absolute; inset:auto 20px 16px 20px; display:flex; justify-content:space-between; pointer-events:none; color:#625e69; font:9px "DM Mono"; letter-spacing:.12em; }
+.tooltip { position:absolute; display:none; max-width:190px; padding:8px 10px; background:#f0eeec; color:#17161c; font:11px "DM Mono"; pointer-events:none; z-index:4; box-shadow:5px 5px 0 var(--magenta); }
+.detail-panel { position:absolute; right:14px; top:14px; width:min(300px,calc(100% - 28px)); max-height:min(370px,calc(100% - 28px)); padding:32px 20px 18px; background:rgba(31,30,38,.94); backdrop-filter:blur(16px); border:1px solid #4d4855; box-shadow:0 18px 60px rgba(0,0,0,.38),5px 5px 0 rgba(255,46,147,.18); transform:translateX(calc(100% + 30px)); opacity:0; transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .2s; z-index:8; overflow:auto; scrollbar-width:thin; scrollbar-color:#55515d transparent; }
+.detail-panel.open { transform:translateX(0); opacity:1; }
+.close-button { position:absolute; right:18px; top:14px; font-size:27px; font-weight:300; color:#88838f; }
+.node-code { color:var(--node-color); font:10px "DM Mono"; letter-spacing:.14em; }
+.detail-panel h2,.modal h2 { margin:10px 0 10px; font-size:24px; line-height:1.05; letter-spacing:-.035em; }
+.detail-intro { color:#c9c5cb; line-height:1.5; font-size:12px; }
+.detail-block { margin-top:18px; border-top:1px solid var(--line); padding-top:13px; }
+.detail-block h3 { margin:0 0 11px; font:10px "DM Mono"; color:#817b88; letter-spacing:.15em; }
+.tags { display:flex; gap:6px; flex-wrap:wrap; }
+.tag { padding:5px 7px; border:1px solid #44404a; color:#bbb6c0; font:9px "DM Mono"; }
+.connections { list-style:none; padding:0; margin:0; }
+.connections button { width:100%; display:flex; justify-content:space-between; border:0; border-bottom:1px solid #302e36; background:none; padding:7px 0; color:#c9c5cb; cursor:pointer; font-size:11px; text-align:left; }
+.connections button:hover { color:var(--magenta); }
+.source-link { display:block; color:#bfbac5; font-size:12px; line-height:1.45; margin-bottom:10px; text-decoration:none; }
+.source-link::before { content:"↗ "; color:var(--node-color); }.source-link:hover{color:white}
+.modal { position:fixed; inset:0; z-index:30; display:grid; place-items:center; background:rgba(10,9,13,.7); backdrop-filter:blur(8px); padding:20px; }
+.modal[hidden]{display:none}.modal-card{position:relative;max-width:510px;background:#222129;border:1px solid #484450;padding:40px}.modal-card p{line-height:1.6}.muted{color:var(--muted)}
+.mobile-info{display:none}
+main.sidebar-collapsed .mobile-info{display:block;position:absolute;left:14px;bottom:33px;background:#26242d;border:1px solid #46424e;padding:8px 11px;font:10px "DM Mono";text-transform:uppercase;cursor:pointer}
+@media(max-width:760px){
+  main{grid-template-columns:1fr}.sidebar{position:absolute;inset:0 auto 0 0;width:min(310px,88vw);transform:translateX(-102%);transition:transform .25s;box-shadow:18px 0 40px #111;}.sidebar.open{transform:none}.graph-shell{grid-column:1}.mobile-info{display:block;position:absolute;left:14px;bottom:33px;background:#26242d;border:1px solid #46424e;padding:8px 11px;font:10px "DM Mono";text-transform:uppercase}.detail-panel{right:10px;top:auto;bottom:10px;width:calc(100% - 20px);max-height:46%;padding:30px 20px 18px}.topbar{padding:0 14px}.text-button{display:none}}
+@media(prefers-reduced-motion:reduce){.detail-panel,.sidebar{transition:none}}

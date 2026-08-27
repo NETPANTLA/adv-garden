@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Jardín interactivo de clasificaciones, sistemas y métodos adversariales." />
+  <meta name="theme-color" content="#19181f" />
+  <title>Jardín adversarial — mapa de relaciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Volver a la vista general">
+      <span class="brand-mark"></span>
+      <span>JARDÍN / ADVERSARIAL</span>
+    </a>
+    <div class="top-actions">
+      <button id="resetBtn" class="text-button">centrar mapa</button>
+      <button id="aboutBtn" class="icon-button" aria-label="Acerca del jardín">?</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar" aria-label="Navegación del jardín">
+      <button id="closeSidebar" class="sidebar-close" aria-label="Cerrar cartografía">×</button>
+      <div class="eyebrow">ÍNDICE / 01—06</div>
+      <h1>Cartografía de<br><em>intersecciones</em></h1>
+      <p class="lede">Clasificaciones, sistemas y superficies adversariales conectadas en un mismo campo.</p>
+
+      <label class="search-wrap">
+        <span>BUSCAR</span>
+        <input id="searchInput" type="search" placeholder="método, cámara, ataque…" autocomplete="off" />
+        <kbd>/</kbd>
+      </label>
+
+      <nav id="filters" class="filters" aria-label="Filtrar por familia"></nav>
+
+      <div class="depth-control">
+        <div class="depth-head"><span>PROFUNDIDAD</span><output id="depthValue">05</output></div>
+        <input id="depthRange" type="range" min="1" max="5" value="5" step="1" aria-label="Nivel máximo de profundidad" />
+        <div class="depth-labels"><span>dominio</span><span>método</span></div>
+      </div>
+
+      <div class="legend">
+        <span><i class="dot violet"></i> clasificación</span>
+        <span><i class="dot orange"></i> sistema</span>
+        <span><i class="dot magenta"></i> intersección</span>
+      </div>
+    </aside>
+
+    <section class="graph-shell" aria-label="Mapa interactivo">
+      <canvas id="graph"></canvas>
+      <div class="graph-meta">
+        <span id="nodeCount">00 NODOS</span>
+        <span>MAPA RELACIONAL / v1.0</span>
+      </div>
+      <div id="tooltip" class="tooltip" role="tooltip"></div>
+      <button id="mobileInfo" class="mobile-info">abrir cartografía</button>
+    </section>
+
+    <aside id="detailPanel" class="detail-panel" aria-live="polite" aria-label="Detalle del nodo">
+      <button id="closePanel" class="close-button" aria-label="Cerrar detalle">×</button>
+      <div id="detailContent"></div>
+    </aside>
+  </main>
+
+  <div id="aboutModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
+    <div class="modal-card">
+      <button id="closeAbout" class="close-button" aria-label="Cerrar">×</button>
+      <div class="eyebrow">SOBRE EL PROYECTO</div>
+      <h2 id="aboutTitle">Un mapa, no una lista.</h2>
+      <p>El jardín organiza el material en familias, pero mantiene visibles sus cruces. Un método puede pertenecer a varias lecturas: por efecto, acceso, soporte físico, modalidad o sistema.</p>
+      <p class="muted">Contenido sintetizado desde “Clasificaciones_”. Las fuentes enlazadas son puntos de partida para investigación y deben verificarse antes de citar.</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
