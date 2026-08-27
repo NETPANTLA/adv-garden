@@ -53,6 +53,7 @@ h1 em { color:var(--violet); font-style:normal; }
 .detail-intro { color:#c9c5cb; line-height:1.5; font-size:12px; }
 .detail-block { margin-top:18px; border-top:1px solid var(--line); padding-top:13px; }
 .detail-block h3 { margin:0 0 11px; font:10px "DM Mono"; color:#817b88; letter-spacing:.15em; }
+.detail-block h3.related-heading{margin-top:17px}
 .tags { display:flex; gap:6px; flex-wrap:wrap; }
 .tag { padding:5px 7px; border:1px solid #44404a; color:#bbb6c0; font:9px "DM Mono"; }
 .connections { list-style:none; padding:0; margin:0; }
