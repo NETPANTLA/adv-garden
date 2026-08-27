@@ -4,6 +4,8 @@ Mapa web interactivo para explorar las clasificaciones, sistemas e interseccione
 
 El mapa usa cinco niveles de profundidad: **dominio → eje de clasificación → concepto o tecnología → método o familia de ataque → artefacto, implementación o recurso**. El deslizador lateral permite revelar cada capa progresivamente.
 
+Incluye una rama de **Política y gobernanza** para relacionar vigilancia, privacidad, uso institucional, sistemas propietarios, activismo y regulación biométrica. Las fichas de métodos muestran el año de publicación o una referencia temporal explícita cuando está documentada; las categorías generales permanecen sin fecha para evitar atribuciones artificiales.
+
 ## Publicar en GitHub Pages
 
 1. Crea un repositorio nuevo en GitHub.

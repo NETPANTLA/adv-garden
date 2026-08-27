@@ -4,7 +4,8 @@ const FAMILIES = [
   {id:'pipeline',name:'Pipeline y alcance',color:'#ff2e93'},
   {id:'vision',name:'Visión y biometría',color:'#9a6cff'},
   {id:'sensors',name:'Sensores y vigilancia',color:'#ff7a32'},
-  {id:'cross',name:'Cruces metodológicos',color:'#f43ba8'}
+  {id:'cross',name:'Cruces metodológicos',color:'#f43ba8'},
+  {id:'politics',name:'Política y gobernanza',color:'#72e4d1'}
 ];
 const LEVELS = [
   {id:1,name:'Dominio'},
@@ -33,7 +34,7 @@ const nodes = [
   N('eot','EOT','cross','Expectation over Transformation optimiza sobre una distribución de transformaciones para obtener robustez física.',['rotación','luz','distancia'],[['Athalye et al.','https://arxiv.org/abs/1707.07397']]),
   N('universal','Universal','pipeline','Una misma perturbación se diseña para afectar múltiples entradas de una distribución, en lugar de optimizarse para una sola muestra.',['reutilizable'],[['Universal Adversarial Perturbations','https://arxiv.org/abs/1610.08401']]),
   N('instance','Per-instance','pipeline','Cada muestra requiere una perturbación optimizada específicamente para ella.',['optimización individual']),
-  N('dual','Dual-use','cross','Categoría analítica de este jardín: una técnica puede investigarse para evaluar robustez o proteger privacidad, pero también utilizarse para evasión. Su valoración depende del contexto, propósito y marco jurídico.',['categoría analítica','ética','contexto']),
+  N('dual','Dual-use','politics','Categoría analítica de este jardín: una técnica puede investigarse para evaluar robustez o proteger privacidad, pero también utilizarse para evasión. Su valoración depende del contexto, propósito y marco jurídico.',['categoría analítica','ética','contexto']),
   N('patch','Adversarial Patch','cross','Familia de ataques que concentra la perturbación en una región. Puede ser digital, física, universal, vestible, naturalista o colocarse sobre el sensor.',['patch','físico','universal'],[['Brown et al.','https://arxiv.org/abs/1712.09665']]),
   N('yolo','YOLO · SSD · RT-DETR','vision','Detectores objetivo de una etapa o basados en transformers. No son ataques: son modelos cuya robustez se evalúa.',['detección','modelos objetivo'],[['RT-DETR','https://arxiv.org/abs/2304.08069']]),
   N('twostage','Faster / Mask R-CNN','vision','Detectores de dos etapas: primero proponen regiones y después las clasifican; Mask R-CNN añade siluetas.',['dos etapas','segmentación'],[['Faster R-CNN','https://arxiv.org/abs/1506.01497'],['Mask R-CNN','https://arxiv.org/abs/1703.06870']]),
@@ -60,14 +61,31 @@ const nodes = [
   N('objecthider','Object Hider','effect','Método de parche para ocultar objetos frente a detectores mediante dos variantes de generación: una basada en mapas de activación y otra en consenso.',['vanishing','patch','transferencia'],[['Paper Object Hider','https://arxiv.org/abs/2010.14974'],['Repositorio','https://github.com/FenHua/DetDak']]),
   N('translucent','Translucent Patch','sensors','Parche universal translúcido situado sobre la lente: ataca la captura sin modificar directamente el objeto.',['lente','contactless','universal'],[['Paper Translucent Patch','https://arxiv.org/abs/2012.12528']]),
   N('dap','DAP dinámico','cross','Parche dinámico y naturalista para evadir detectores de personas, diseñado para transformaciones y deformaciones no rígidas.',['naturalista','persona','físico'],[['Paper DAP','https://arxiv.org/abs/2305.11618']]),
-  N('badpatch','BadPatch','cross','Generación de parches físicos naturalistas mediante difusión, con evaluación sobre múltiples familias de detectores.',['difusión','naturalista','patch'],[['Paper BadPatch','https://arxiv.org/abs/2412.01440']])
+  N('badpatch','BadPatch','cross','Generación de parches físicos naturalistas mediante difusión, con evaluación sobre múltiples familias de detectores.',['difusión','naturalista','patch'],[['Paper BadPatch','https://arxiv.org/abs/2412.01440']]),
+  N('surveillance','Infraestructura de vigilancia','politics','Conjunto sociotécnico de sensores, modelos, bases de datos, operadores e instituciones que permite observar, identificar o seguir personas, vehículos y eventos.',['infraestructura','vigilancia','sociotécnico'],[['AI Now 2019 Report','https://ainowinstitute.org/publications/ai-now-2019-report-2']]),
+  N('privacy','Privacidad y autonomía','politics','Marco para examinar cómo la captura, identificación y trazabilidad automatizadas afectan privacidad, libertad de movimiento, asociación y expresión.',['derechos','privacidad','autonomía'],[['SoK: Anti-Facial Recognition Technology','https://arxiv.org/abs/2112.04558']]),
+  N('governance','Gobernanza y rendición de cuentas','politics','Procesos para asignar responsabilidades, documentar decisiones, evaluar impactos, monitorear riesgos y permitir revisión de sistemas de IA.',['gobernanza','auditoría','responsabilidad'],[['NIST AI RMF 1.0','https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10']]),
+  N('institutional','Uso institucional','politics','Analiza quién despliega un sistema, con qué finalidad, bajo qué autoridad y qué consecuencias produce para las personas observadas.',['instituciones','finalidad','autoridad']),
+  N('proprietary','Infraestructura propietaria','politics','Los sistemas cerrados limitan el conocimiento público sobre arquitectura, datos y métricas; su evaluación requiere documentar incertidumbre y trabajar con evidencia observable.',['opacidad','proveedores','evidencia']),
+  N('activism','Activismo antivigilancia','politics','Prácticas sociales, jurídicas, artísticas y técnicas que cuestionan o limitan tecnologías de vigilancia y reconocimiento biométrico.',['activismo','diseño','derechos'],[['AI Now 2019 Report','https://ainowinstitute.org/publications/ai-now-2019-report-2'],['ACLU: Face Recognition Surveillance','https://www.aclu.org/news/topic/stopping-face-recognition-surveillance']]),
+  N('biometric_policy','Regulación biométrica','politics','Normas y políticas que establecen condiciones, evaluaciones o límites para identificación biométrica remota y otros usos de alto impacto. Su alcance depende de la jurisdicción.',['biometría','regulación','jurisdicción'],[['Reglamento europeo de IA','https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=en']])
 ];
+
+const DATES = {
+  patch:'2017', tog:'2020', dpatch:'2018', pgd:'FGSM 2015 · PGD 2018',
+  advshirt:'2019 (preprint)', advhat:'2019', rp2:'2018', objecthider:'2020',
+  translucent:'2020', dap:'2023', badpatch:'2024 preprint · 2025 publicación',
+  eot:'2018', universal:'2017', norms:'2017', extraction:'2016',
+  flock:'Documentación vigente consultada en 2026', governance:'2023',
+  biometric_policy:'UE 2024/1689 · aplicación por etapas'
+};
 
 // Cinco capas de lectura. Los nodos no dependen de su posición visual para expresar jerarquía.
 const level1 = new Set(['atlas']);
-const level3 = new Set(['vanishing','fabrication','mislabeling','untargeted','whitebox','graybox','blackbox','targeted','evasion','poisoning','extraction','norms','physical','universal','instance','dual','yolo','twostage','openvocab','face_det','face_id','tracking','audio','rgb','nir','thermal','depth','lidar','alpr','transfer','multimodal']);
+const level3 = new Set(['vanishing','fabrication','mislabeling','untargeted','whitebox','graybox','blackbox','targeted','evasion','poisoning','extraction','norms','physical','universal','instance','dual','yolo','twostage','openvocab','face_det','face_id','tracking','audio','rgb','nir','thermal','depth','lidar','alpr','transfer','multimodal','surveillance','privacy','governance','institutional','proprietary']);
 const level5 = new Set(['advshirt','advhat','rp2','objecthider','translucent','dap','badpatch']);
 nodes.forEach(n=>n.level=level1.has(n.id)?1:(level3.has(n.id)?3:(level5.has(n.id)?5:4)));
+nodes.forEach(n=>n.date=DATES[n.id]||null);
 
 // Los seis ejes también funcionan como nodos de segundo nivel y articulan sus familias.
 FAMILIES.forEach(f=>{const axis=N(`axis_${f.id}`,f.name,f.id,`Eje de lectura que reúne los nodos de ${f.name.toLowerCase()} y conserva sus relaciones con otras capas.`,['nivel 2','eje']);axis.level=2;nodes.push(axis);});
@@ -81,7 +99,8 @@ const edgePairs = [
  ['patch','yolo'],['patch','face_det'],['patch','rgb'],['patch','nir'],['yolo','twostage'],['yolo','openvocab'],['yolo','tracking'],['yolo','rgb'],['twostage','thermal'],
  ['face_det','face_id'],['face_det','rgb'],['face_det','nir'],['face_id','tracking'],['tracking','multimodal'],['tracking','rgb'],
  ['audio','multimodal'],['rgb','nir'],['nir','thermal'],['thermal','depth'],['depth','lidar'],['alpr','nir'],['alpr','flock'],['flock','transfer'],['flock','blackbox'],['flock','eot'],['flock','dual'],['flock','nir'],['transfer','eot'],['multimodal','dual'],
- ['tog','vanishing'],['tog','fabrication'],['tog','mislabeling'],['tog','untargeted'],['dpatch','patch'],['dpatch','vanishing'],['pgd','norms'],['pgd','untargeted'],['advshirt','patch'],['advshirt','physical'],['advshirt','vanishing'],['advhat','face_id'],['advhat','physical'],['rp2','patch'],['rp2','eot'],['objecthider','patch'],['objecthider','vanishing'],['translucent','patch'],['translucent','rgb'],['dap','patch'],['dap','physical'],['badpatch','patch'],['badpatch','yolo']
+ ['tog','vanishing'],['tog','fabrication'],['tog','mislabeling'],['tog','untargeted'],['dpatch','patch'],['dpatch','vanishing'],['pgd','norms'],['pgd','untargeted'],['advshirt','patch'],['advshirt','physical'],['advshirt','vanishing'],['advhat','face_id'],['advhat','physical'],['rp2','patch'],['rp2','eot'],['objecthider','patch'],['objecthider','vanishing'],['translucent','patch'],['translucent','rgb'],['dap','patch'],['dap','physical'],['badpatch','patch'],['badpatch','yolo'],
+ ['surveillance','rgb'],['surveillance','nir'],['surveillance','face_id'],['surveillance','tracking'],['surveillance','alpr'],['privacy','surveillance'],['privacy','face_id'],['privacy','dual'],['privacy','activism'],['governance','surveillance'],['governance','proprietary'],['governance','biometric_policy'],['institutional','surveillance'],['institutional','flock'],['institutional','governance'],['proprietary','flock'],['proprietary','blackbox'],['proprietary','transfer'],['activism','patch'],['activism','dual'],['biometric_policy','face_id'],['biometric_policy','surveillance'],['biometric_policy','institutional']
 ];
 FAMILIES.forEach(f=>{
   edgePairs.push(['atlas',`axis_${f.id}`]);
@@ -95,7 +114,7 @@ const canvas=document.querySelector('#graph'),ctx=canvas.getContext('2d'),shell=
 let W=0,H=0,dpr=1,hover=null,selected=null,activeFamily='all',maxLevel=5,query='',drag=false,movedDuringDrag=false,last={x:0,y:0},camera={x:0,y:0,z:1};
 
 function seedLayout(){
-  const groups={}; FAMILIES.forEach((f,i)=>groups[f.id]={cx:Math.cos(i*Math.PI/3-.8)*330,cy:Math.sin(i*Math.PI/3-.8)*270,items:[]});
+  const groups={}; FAMILIES.forEach((f,i)=>{const angle=i*(Math.PI*2/FAMILIES.length)-.8;groups[f.id]={cx:Math.cos(angle)*340,cy:Math.sin(angle)*275,items:[]};});
   nodes.forEach(n=>groups[n.family].items.push(n));
   Object.values(groups).forEach(g=>g.items.forEach((n,i)=>{if(n.level===2){n.x=g.cx;n.y=g.cy;return;}const a=i/g.items.length*Math.PI*2;const radius=n.level===3?100:(n.level===4?158:210);n.x=g.cx+Math.cos(a)*(radius+14*(i%3));n.y=g.cy+Math.sin(a)*(radius*.75+11*((i+1)%3));}));
   byId.atlas.x=0;byId.atlas.y=0;
@@ -124,7 +143,7 @@ function showDetail(n){
   const direct=n.sources||[],seen=new Set(direct.map(s=>s[1]));
   const relatedSources=links.flatMap(x=>(x.sources||[]).map(s=>[`${s[0]} · vía ${x.label}`,s[1]])).filter(s=>!seen.has(s[1])&&seen.add(s[1])).slice(0,4);
   const sourceBlock=(direct.length||relatedSources.length)?`<div class="detail-block" style="--node-color:${f.color}">${direct.length?`<h3>FUENTES DIRECTAS</h3>${direct.map(s=>`<a class="source-link" href="${s[1]}" target="_blank" rel="noreferrer">${s[0]}</a>`).join('')}`:''}${relatedSources.length?`<h3 class="related-heading">BIBLIOGRAFÍA RELACIONADA</h3>${relatedSources.map(s=>`<a class="source-link" href="${s[1]}" target="_blank" rel="noreferrer">${s[0]}</a>`).join('')}`:''}</div>`:'';
-  document.querySelector('#detailContent').innerHTML=`<div class="node-code" style="--node-color:${f.color}">NIVEL ${String(n.level).padStart(2,'0')} — ${LEVELS[n.level-1].name.toUpperCase()}</div><h2>${n.label}</h2><p class="detail-intro">${n.intro}</p><div class="detail-block"><h3>FAMILIA / ETIQUETAS</h3><div class="tags"><span class="tag">${f.name}</span>${n.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div><div class="detail-block"><h3>INTERSECCIONES / ${links.length}</h3><ul class="connections">${links.map(x=>`<li><button data-node="${x.id}">${x.label}<span>→</span></button></li>`).join('')}</ul></div>${sourceBlock}`;
+  document.querySelector('#detailContent').innerHTML=`<div class="node-code" style="--node-color:${f.color}">NIVEL ${String(n.level).padStart(2,'0')} — ${LEVELS[n.level-1].name.toUpperCase()}</div><h2>${n.label}</h2>${n.date?`<span class="node-date">${n.date}</span>`:''}<p class="detail-intro">${n.intro}</p><div class="detail-block"><h3>FAMILIA / ETIQUETAS</h3><div class="tags"><span class="tag">${f.name}</span>${n.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div><div class="detail-block"><h3>INTERSECCIONES / ${links.length}</h3><ul class="connections">${links.map(x=>`<li><button data-node="${x.id}">${x.label}<span>→</span></button></li>`).join('')}</ul></div>${sourceBlock}`;
   document.querySelector('#detailPanel').classList.add('open');document.querySelectorAll('[data-node]').forEach(b=>b.onclick=()=>showDetail(byId[b.dataset.node]));draw();
 }
 function reset(){camera={x:0,y:0,z:Math.min(1,Math.max(.4,Math.min((W-70)/1050,(H-70)/820)))};selected=null;document.querySelector('#detailPanel').classList.remove('open');draw();}

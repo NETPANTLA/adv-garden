@@ -38,7 +38,7 @@ h1 em { color:var(--violet); font-style:normal; }
 .depth-control input{width:100%;margin:13px 0 8px;accent-color:var(--magenta)}
 .depth-labels{letter-spacing:0;text-transform:lowercase;color:#5e5965}
 .legend { display:flex; flex-wrap:wrap; gap:8px 12px; margin-top:24px; font:9px "DM Mono"; color:#8c8794; text-transform:uppercase; }
-.dot { display:inline-block; width:6px; height:6px; margin-right:5px; background:currentColor; }.violet{color:var(--violet)}.orange{color:var(--orange)}.magenta{color:var(--magenta)}
+.dot { display:inline-block; width:6px; height:6px; margin-right:5px; background:currentColor; }.violet{color:var(--violet)}.orange{color:var(--orange)}.magenta{color:var(--magenta)}.cyan{color:var(--cyan)}
 .hint { margin-top:18px; color:#6b6672; font:9px/1.5 "DM Mono"; }
 .graph-shell { position:relative; min-width:0; overflow:hidden; cursor:grab; background:radial-gradient(circle at 50% 45%,#22202a 0,#19181f 58%); }
 .graph-shell:active { cursor:grabbing; }
@@ -51,6 +51,7 @@ h1 em { color:var(--violet); font-style:normal; }
 .node-code { color:var(--node-color); font:10px "DM Mono"; letter-spacing:.14em; }
 .detail-panel h2,.modal h2 { margin:10px 0 10px; font-size:24px; line-height:1.05; letter-spacing:-.035em; }
 .detail-intro { color:#c9c5cb; line-height:1.5; font-size:12px; }
+.node-date{display:inline-flex;margin:0 0 10px;padding:4px 6px;border:1px solid #45414b;color:#aaa5b0;font:9px "DM Mono";letter-spacing:.08em}
 .detail-block { margin-top:18px; border-top:1px solid var(--line); padding-top:13px; }
 .detail-block h3 { margin:0 0 11px; font:10px "DM Mono"; color:#817b88; letter-spacing:.15em; }
 .detail-block h3.related-heading{margin-top:17px}
