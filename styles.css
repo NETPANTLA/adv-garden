@@ -42,7 +42,7 @@ h1 em { color:var(--violet); font-style:normal; }
 .hint { margin-top:18px; color:#6b6672; font:9px/1.5 "DM Mono"; }
 .graph-shell { position:relative; min-width:0; overflow:hidden; cursor:grab; background:radial-gradient(circle at 50% 45%,#22202a 0,#19181f 58%); }
 .graph-shell:active { cursor:grabbing; }
-#graph { display:block; width:100%; height:100%; }
+#graph { display:block; width:100%; height:100%; touch-action:none; overscroll-behavior:contain; }
 .graph-meta { position:absolute; inset:auto 20px 16px 20px; display:flex; justify-content:space-between; pointer-events:none; color:#625e69; font:9px "DM Mono"; letter-spacing:.12em; }
 .tooltip { position:absolute; display:none; max-width:190px; padding:8px 10px; background:#f0eeec; color:#17161c; font:11px "DM Mono"; pointer-events:none; z-index:4; box-shadow:5px 5px 0 var(--magenta); }
 .detail-panel { position:absolute; right:14px; top:14px; width:min(300px,calc(100% - 28px)); max-height:min(370px,calc(100% - 28px)); padding:32px 20px 18px; background:rgba(31,30,38,.94); backdrop-filter:blur(16px); border:1px solid #4d4855; box-shadow:0 18px 60px rgba(0,0,0,.38),5px 5px 0 rgba(255,46,147,.18); transform:translateX(calc(100% + 30px)); opacity:0; transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .2s; z-index:8; overflow:auto; scrollbar-width:thin; scrollbar-color:#55515d transparent; }
