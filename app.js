@@ -152,19 +152,22 @@ function draw(){
 }
 function hit(x,y){return nodes.filter(visible).reverse().find(n=>{const p=screen(n);return Math.hypot(x-p.x,y-p.y)<18;});}
 function pointerPos(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
-canvas.addEventListener('pointerdown',e=>{drag=true;movedDuringDrag=false;last=pointerPos(e);canvas.setPointerCapture(e.pointerId);});
-canvas.addEventListener('pointermove',e=>{const p=pointerPos(e);if(drag){const dx=p.x-last.x,dy=p.y-last.y;if(Math.hypot(dx,dy)>1)movedDuringDrag=true;camera.x+=dx;camera.y+=dy;last=p;draw();return;}hover=hit(p.x,p.y)||null;canvas.style.cursor=hover?'pointer':'grab';const tip=document.querySelector('#tooltip');if(hover){tip.textContent=hover.label;tip.style.display='block';tip.style.left=`${p.x+14}px`;tip.style.top=`${p.y+12}px`;}else tip.style.display='none';draw();});
-canvas.addEventListener('pointerup',e=>{const p=pointerPos(e);drag=false;if(!movedDuringDrag){const n=hit(p.x,p.y);if(n)showDetail(n);}});
+canvas.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')return;drag=true;movedDuringDrag=false;last=pointerPos(e);canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const p=pointerPos(e);if(drag){const dx=p.x-last.x,dy=p.y-last.y;if(Math.hypot(dx,dy)>1)movedDuringDrag=true;camera.x+=dx;camera.y+=dy;last=p;draw();return;}hover=hit(p.x,p.y)||null;canvas.style.cursor=hover?'pointer':'grab';const tip=document.querySelector('#tooltip');if(hover){tip.textContent=hover.label;tip.style.display='block';tip.style.left=`${p.x+14}px`;tip.style.top=`${p.y+12}px`;}else tip.style.display='none';draw();});
+canvas.addEventListener('pointerup',e=>{if(e.pointerType==='touch')return;const p=pointerPos(e);drag=false;if(!movedDuringDrag){const n=hit(p.x,p.y);if(n)showDetail(n);}});
 canvas.addEventListener('pointercancel',()=>{drag=false;movedDuringDrag=false;});
 canvas.addEventListener('pointerleave',()=>{drag=false;hover=null;document.querySelector('#tooltip').style.display='none';draw();});
 canvas.addEventListener('wheel',e=>{e.preventDefault();const p=pointerPos(e),old=camera.z,next=Math.max(.48,Math.min(2.2,old*Math.exp(-e.deltaY*.001)));camera.x=p.x-W/2-(p.x-W/2-camera.x)*(next/old);camera.y=p.y-H/2-(p.y-H/2-camera.y)*(next/old);camera.z=next;draw();},{passive:false});
 
 // Respaldo táctil para navegadores móviles que reservan el gesto de arrastre.
-let touchPan=null;
-canvas.addEventListener('touchstart',e=>{if(e.touches.length!==1)return;e.preventDefault();const t=e.touches[0],r=canvas.getBoundingClientRect();touchPan={x:t.clientX-r.left,y:t.clientY-r.top};},{passive:false});
-canvas.addEventListener('touchmove',e=>{if(e.touches.length!==1||!touchPan)return;e.preventDefault();const t=e.touches[0],r=canvas.getBoundingClientRect(),p={x:t.clientX-r.left,y:t.clientY-r.top};camera.x+=p.x-touchPan.x;camera.y+=p.y-touchPan.y;touchPan=p;draw();},{passive:false});
-canvas.addEventListener('touchend',()=>{touchPan=null;},{passive:true});
-canvas.addEventListener('touchcancel',()=>{touchPan=null;},{passive:true});
+let touchGesture=null;
+const touchPoint=(t,r)=>({x:t.clientX-r.left,y:t.clientY-r.top});
+const touchDistance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+const touchMiddle=(a,b)=>({x:(a.x+b.x)/2,y:(a.y+b.y)/2});
+canvas.addEventListener('touchstart',e=>{e.preventDefault();const r=canvas.getBoundingClientRect(),pts=[...e.touches].map(t=>touchPoint(t,r));if(pts.length===1)touchGesture={mode:'pan',last:pts[0],moved:false};else if(pts.length>=2)touchGesture={mode:'pinch',lastMid:touchMiddle(pts[0],pts[1]),lastDist:touchDistance(pts[0],pts[1])};},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!touchGesture)return;const r=canvas.getBoundingClientRect(),pts=[...e.touches].map(t=>touchPoint(t,r));if(pts.length===1&&touchGesture.mode==='pan'){const p=pts[0],dx=p.x-touchGesture.last.x,dy=p.y-touchGesture.last.y;if(Math.hypot(dx,dy)>1)touchGesture.moved=true;camera.x+=dx;camera.y+=dy;touchGesture.last=p;draw();}else if(pts.length>=2){const mid=touchMiddle(pts[0],pts[1]),dist=touchDistance(pts[0],pts[1]);if(touchGesture.mode!=='pinch')touchGesture={mode:'pinch',lastMid:mid,lastDist:dist};const old=camera.z,next=Math.max(.4,Math.min(2.4,old*(dist/touchGesture.lastDist)));camera.x+=mid.x-touchGesture.lastMid.x;camera.y+=mid.y-touchGesture.lastMid.y;camera.x=mid.x-W/2-(mid.x-W/2-camera.x)*(next/old);camera.y=mid.y-H/2-(mid.y-H/2-camera.y)*(next/old);camera.z=next;touchGesture.lastMid=mid;touchGesture.lastDist=dist;draw();}},{passive:false});
+canvas.addEventListener('touchend',e=>{e.preventDefault();const r=canvas.getBoundingClientRect(),ended=touchGesture;if(e.touches.length===1){touchGesture={mode:'pan',last:touchPoint(e.touches[0],r),moved:true};}else{touchGesture=null;if(ended?.mode==='pan'&&!ended.moved&&e.changedTouches[0]){const p=touchPoint(e.changedTouches[0],r),n=hit(p.x,p.y);if(n)showDetail(n);}}},{passive:false});
+canvas.addEventListener('touchcancel',()=>{touchGesture=null;},{passive:true});
 
 function showDetail(n){
   selected=n;const f=family(n.family),links=connections(n.id);
