@@ -1,18 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#19181f"/>
-  <g opacity=".18" stroke="#f1efed" fill="none">
-    <path d="M620 68 814 178 1082 94M620 68 712 315 1082 94M712 315 940 526 1112 382M712 315 1082 94 1112 382M620 68 420 180 712 315M420 180 540 514 712 315"/>
-    <circle cx="620" cy="68" r="6"/><circle cx="814" cy="178" r="5"/><circle cx="1082" cy="94" r="7"/><circle cx="712" cy="315" r="8"/><circle cx="940" cy="526" r="6"/><circle cx="1112" cy="382" r="5"/><circle cx="420" cy="180" r="5"/><circle cx="540" cy="514" r="7"/>
+  <g opacity=".72" fill="none" stroke-linejoin="round">
+    <path d="M575 72 748 133 904 76 1081 167 1018 328 1120 466 944 550 750 492 604 567 492 424 548 274Z" stroke="#825cff" stroke-width="3"/>
+    <path d="M575 72 548 274 750 492 904 76M548 274 1018 328 944 550M748 133 1018 328 604 567M492 424 750 492 1120 466M748 133 548 274 1081 167 1018 328" stroke="#ff641c" stroke-width="3"/>
+    <path d="M575 72 1018 328M548 274 944 550M748 133 750 492M492 424 1081 167" stroke="#ff2e93" stroke-width="2"/>
+    <g stroke="#f1efed" stroke-width="2">
+      <circle cx="575" cy="72" r="17"/><circle cx="748" cy="133" r="7"/><circle cx="904" cy="76" r="8"/><circle cx="1081" cy="167" r="11"/><circle cx="1018" cy="328" r="21"/><circle cx="1120" cy="466" r="7"/><circle cx="944" cy="550" r="13"/><circle cx="750" cy="492" r="8"/><circle cx="604" cy="567" r="6"/><circle cx="492" cy="424" r="12"/><circle cx="548" cy="274" r="19"/>
+    </g>
+    <g fill="#19181f" stroke-width="5">
+      <rect x="569" y="66" width="12" height="12" stroke="#ff641c"/><rect x="542" y="268" width="12" height="12" stroke="#825cff"/><rect x="1012" y="322" width="12" height="12" stroke="#ff2e93"/><rect x="938" y="544" width="12" height="12" stroke="#72e4d1"/>
+    </g>
   </g>
   <g fill="none" stroke-linejoin="round" stroke-width="7">
     <path d="M88 112 130 70l42 42-42 42Z" stroke="#ff641c"/>
     <path d="M116 128 158 86l34 34-42 42Z" stroke="#825cff"/>
   </g>
   <circle cx="140" cy="116" r="7" fill="#ff2e93"/>
-  <text x="88" y="255" fill="#f1efed" font-family="Arial, sans-serif" font-size="76" font-weight="600" letter-spacing="-3">Jardín adversarial</text>
-  <text x="91" y="315" fill="#ff641c" font-family="monospace" font-size="22" letter-spacing="5">CARTOGRAFÍA DE INTERSECCIONES</text>
-  <text x="91" y="412" fill="#aaa6b0" font-family="Arial, sans-serif" font-size="29">Métodos, modelos, sensores y políticas</text>
-  <text x="91" y="453" fill="#aaa6b0" font-family="Arial, sans-serif" font-size="29">conectados en un mapa interactivo.</text>
-  <path d="M90 525h310" stroke="#35323d"/>
-  <circle cx="105" cy="559" r="5" fill="#825cff"/><circle cx="131" cy="559" r="5" fill="#ff641c"/><circle cx="157" cy="559" r="5" fill="#ff2e93"/><circle cx="183" cy="559" r="5" fill="#72e4d1"/>
+  <text x="88" y="267" fill="#f1efed" font-family="Arial, sans-serif" font-size="76" font-weight="600" letter-spacing="-3">Jardín</text>
+  <text x="88" y="343" fill="#f1efed" font-family="Arial, sans-serif" font-size="76" font-weight="600" letter-spacing="-3">adversarial</text>
+  <text x="91" y="407" fill="#ff641c" font-family="monospace" font-size="20" letter-spacing="4">CARTOGRAFÍA DE INTERSECCIONES</text>
+  <path d="M90 510h280" stroke="#35323d"/>
+  <circle cx="105" cy="546" r="5" fill="#825cff"/><circle cx="131" cy="546" r="5" fill="#ff641c"/><circle cx="157" cy="546" r="5" fill="#ff2e93"/><circle cx="183" cy="546" r="5" fill="#72e4d1"/>
 </svg>
